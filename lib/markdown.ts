@@ -45,11 +45,19 @@ export async function renderMarkdown(markdown: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkGfm)
-    .use(remarkRehype)
     .use(rehypeSlug)
+    .use(remarkRehype)
     .use(rehypePrettyCode, prettyCodeOptions)
     .use(rehypeStringify)
     .process(markdown);
 
   return String(file);
+}
+
+/** Highlight a raw code string with the same shiki dual themes used in blogs. */
+export async function highlightCode(
+  code: string,
+  lang = "tsx"
+): Promise<string> {
+  return renderMarkdown("\u0060\u0060\u0060" + lang + "\n" + code + "\n\u0060\u0060\u0060");
 }

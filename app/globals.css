@@ -231,6 +231,21 @@ html {
   border: 1px solid var(--hairline);
 }
 
+/* ---------- Playground docs surfaces ---------- */
+.preview-canvas {
+  border: 1px solid var(--hairline);
+  border-radius: 1rem;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  padding: 1.5rem;
+}
+
+.code-shell {
+  border: 1px solid var(--hairline);
+  border-radius: 0.75rem;
+  background: color-mix(in srgb, var(--surface) 80%, transparent);
+  padding: 0.875rem 1rem;
+}
+
 figure[data-rehype-pretty-code-figure] {
   position: relative;
 }

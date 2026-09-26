@@ -1,23 +1,47 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import ComponentDoc from "@/components/component-doc";
 import { LoaderAnimation } from "@/components/ui/loader-animation";
+import { loaderAnimationSourceCode } from "@/lib/source-codes";
 
-export default function PageLoaderDemo() {
-  const [show, setShow] = useState(false);
-  const reduceMotion = useReducedMotion();
+const usage = `import LoaderAnimation from "@/components/ui/loader-animation";
 
-  useEffect(() => setShow(true), []);
+export default function Page() {
+  return <LoaderAnimation />;
+}`;
 
+const props = `type Props = {
+  greetings?: string[]; // words to cycle (defaults to hello in many languages)
+  interval?: number;    // ms per word (default 900)
+  onComplete?: () => void;
+};`;
+
+export const metadata = {
+  title: "Hello Page Loader — Playground",
+  description: "Multilingual greeting loader built with Motion.",
+};
+
+export default function PageLoaderPage() {
   return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      animate={show ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="flex w-full justify-center py-10"
-    >
-      <LoaderAnimation />
-    </motion.div>
+    <main className="flex flex-1 justify-center bg-[var(--background)] px-6 pb-28 pt-20 sm:pt-24">
+      <div className="w-full max-w-xl">
+        <ComponentDoc
+          title="Hello Page Loader"
+          description="Multilingual greeting loader built with Motion. Each word fades into the next without blocking the page."
+          preview={<LoaderAnimation />}
+          cli="https://sahilcodex.vercel.app/r/loader-animation.json"
+          deps={["motion"]}
+          manualSteps={[
+            {
+              label: "Component",
+              file: "components/ui/loader-animation.tsx",
+              code: loaderAnimationSourceCode,
+            },
+          ]}
+          usage={[
+            { label: "Basic", code: usage },
+            { label: "Props", code: props },
+          ]}
+        />
+      </div>
+    </main>
   );
 }

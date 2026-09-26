@@ -1,23 +1,50 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import ComponentDoc from "@/components/component-doc";
 import CustomKeyboard from "@/components/ui/custom-keyboard";
+import { customKeyboardSourceCode } from "@/lib/source-codes";
 
-export default function MacKeyboardDemo() {
-  const [show, setShow] = useState(false);
-  const reduceMotion = useReducedMotion();
+const usage = `import CustomKeyboard from "@/components/ui/custom-keyboard";
 
-  useEffect(() => setShow(true), []);
+export default function Page() {
+  return <CustomKeyboard />;
+}`;
 
+const props = `interface Key { code: string; label: string }
+type Props = {
+  onKeyPress?: (key: Key) => void; // fires on physical + on-screen presses
+  theme?: "space-black" | "silver"; // default: "space-black"
+  soundEnabled?: boolean;           // default: true
+  hapticsEnabled?: boolean;         // default: true (mobile)
+};`;
+
+export const metadata = {
+  title: "Mac Keyboard — Playground",
+  description:
+    "Interactive Mac keyboard replica with real-time keystroke tracking and authentic layout geometry.",
+};
+
+export default function MacKeyboardPage() {
   return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-      animate={show ? { opacity: 1, y: 0 } : undefined}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="w-full"
-    >
-      <CustomKeyboard />
-    </motion.div>
+    <main className="flex flex-1 justify-center bg-[var(--background)] px-6 pb-28 pt-20 sm:pt-24">
+      <div className="w-full max-w-xl">
+        <ComponentDoc
+          title="Mac Keyboard"
+          description="Interactive Mac keyboard replica with real-time keystroke tracking and authentic layout geometry. Features active states for physical key presses and optional sound feedback."
+          preview={<CustomKeyboard />}
+          cli="https://sahilcodex.vercel.app/r/keyboard.json"
+          deps={["lucide-react", "web-haptics", "clsx", "tailwind-merge"]}
+          manualSteps={[
+            {
+              label: "Component",
+              file: "components/ui/custom-keyboard.tsx",
+              code: customKeyboardSourceCode,
+            },
+          ]}
+          usage={[
+            { label: "Basic", code: usage },
+            { label: "Props", code: props },
+          ]}
+        />
+      </div>
+    </main>
   );
 }
