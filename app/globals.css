@@ -246,6 +246,23 @@ html {
   padding: 0.875rem 1rem;
 }
 
+/* No nested borders/backgrounds inside a code shell */
+.code-shell pre,
+.code-shell figure[data-rehype-pretty-code-figure] pre {
+  border: none;
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+}
+
+.code-shell .typeset > *:first-child {
+  margin-top: 0;
+}
+
+.code-shell .typeset > *:last-child {
+  margin-bottom: 0;
+}
+
 figure[data-rehype-pretty-code-figure] {
   position: relative;
 }
