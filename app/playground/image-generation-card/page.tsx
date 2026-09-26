@@ -1,4 +1,4 @@
-import ComponentDoc from "@/components/component-doc";
+import ComponentDoc, { type PropRow } from "@/components/component-doc";
 import { AiImageCard } from "@/components/ui/ai-image-card";
 import { aiImageCardSourceCode } from "@/lib/source-codes";
 
@@ -19,6 +19,36 @@ export const metadata = {
   description:
     "AI-style image generation card with blinking grid, blur-to-focus reveal and live timer.",
 };
+
+const PROPS: PropRow[] = [
+  {
+    name: "generateDuration",
+    type: "number",
+    description:
+      "Seconds the blinking-grid animation runs before the image pops in. Defaults to 3.",
+  },
+  {
+    name: "imageSrc",
+    type: "string",
+    description: "Image source to reveal at the end.",
+  },
+  {
+    name: "imageAlt",
+    type: "string",
+    description: "Alt text for the revealed image.",
+  },
+  {
+    name: "label",
+    type: "string",
+    description:
+      'Label shown at the bottom-left while generating. Defaults to "Generating image".',
+  },
+  {
+    name: "className",
+    type: "string",
+    description: "Extra classes for the card container.",
+  },
+];
 
 export default function ImageGenerationCardPage() {
   return (
@@ -41,6 +71,8 @@ export default function ImageGenerationCardPage() {
             { label: "Basic", code: usage },
             { label: "Props", code: props },
           ]}
+          props={PROPS}
+          notes="Recreates the generation state used in ChatGPT and Midjourney: blinking grid build-up, blur-to-focus reveal, shine sweep and a live timer."
         />
       </div>
     </main>

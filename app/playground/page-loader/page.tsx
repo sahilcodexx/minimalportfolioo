@@ -1,4 +1,4 @@
-import ComponentDoc from "@/components/component-doc";
+import ComponentDoc, { type PropRow } from "@/components/component-doc";
 import { LoaderAnimation } from "@/components/ui/loader-animation";
 import { loaderAnimationSourceCode } from "@/lib/source-codes";
 
@@ -18,6 +18,19 @@ export const metadata = {
   title: "Hello Page Loader — Playground",
   description: "Multilingual greeting loader built with Motion.",
 };
+
+const PROPS: PropRow[] = [
+  {
+    name: "intervalMs",
+    type: "number",
+    description: "Milliseconds each greeting stays on screen. Defaults to 170.",
+  },
+  {
+    name: "className",
+    type: "string",
+    description: "Extra classes for the loader container.",
+  },
+];
 
 export default function PageLoaderPage() {
   return (
@@ -40,6 +53,8 @@ export default function PageLoaderPage() {
             { label: "Basic", code: usage },
             { label: "Props", code: props },
           ]}
+          props={PROPS}
+          notes="Cycles hello in dozens of languages with a soft fade. Non-blocking, so the page can render underneath while it plays."
         />
       </div>
     </main>

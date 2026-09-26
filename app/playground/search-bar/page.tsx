@@ -1,4 +1,4 @@
-import ComponentDoc from "@/components/component-doc";
+import ComponentDoc, { type PropRow } from "@/components/component-doc";
 import { SearchBar } from "@/components/ui/search-bar";
 import { searchBarSourceCode } from "@/lib/source-codes";
 
@@ -21,6 +21,14 @@ export const metadata = {
     "Command-palette style searchable dropdown with keyboard navigation and match highlighting.",
 };
 
+const PROPS: PropRow[] = [
+  {
+    name: "className",
+    type: "string",
+    description: "Extra classes for the outer container.",
+  },
+];
+
 export default function SearchBarPage() {
   return (
     <main className="flex flex-1 justify-center bg-[var(--background)] px-6 pb-28 pt-20 sm:pt-24">
@@ -42,6 +50,8 @@ export default function SearchBarPage() {
             { label: "Basic", code: usage },
             { label: "Props", code: props },
           ]}
+          props={PROPS}
+          notes="Ships with a demo country list. Full keyboard navigation: arrows to move, Enter to select, Esc to close. Match highlighting and the active pill are animated with Motion."
         />
       </div>
     </main>
