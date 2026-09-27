@@ -162,6 +162,18 @@ html {
   box-shadow: inset 0 0 0 1px
     color-mix(in srgb, var(--foreground) 25%, transparent);
 }
+
+/* Back button living inside the dock */
+.back-dock {
+  background: color-mix(in srgb, var(--foreground) 6%, transparent);
+  box-shadow: inset 0 0 0 1px var(--hairline);
+}
+
+.back-dock:hover {
+  color: var(--foreground);
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--foreground) 25%, transparent);
+}
 /* ---------- Highlighted keywords ---------- */
 .hl {
   color: var(--highlight);

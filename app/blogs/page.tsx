@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { getAllBlogs } from "@/lib/content";
-import FloatingBack from "@/components/floating-back";
 
 export const revalidate = 3600;
 
@@ -22,7 +21,6 @@ export default async function BlogsPage() {
 
   return (
     <main className="flex flex-1 justify-center bg-[var(--background)] px-6 pb-28 pt-20 sm:pt-24">
-      <FloatingBack fallback="/" />
       <div className="w-full max-w-xl">
         <h1 className="mt-4 text-2xl font-medium tracking-tight text-[var(--foreground)]">
           Notes
