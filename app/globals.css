@@ -118,6 +118,18 @@ html {
     inset 0 0 0 1px color-mix(in srgb, var(--foreground) 14%, transparent);
 }
 
+/* ---------- Project cards (grid view) ---------- */
+.project-card {
+  border: 1px solid var(--hairline);
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.project-card:hover {
+  border-color: color-mix(in srgb, var(--foreground) 18%, transparent);
+  transform: translateY(-2px);
+}
+
 /* ---------- Scroll progress pill: visible shaded surface ---------- */
 [data-slot='scroll-progress-surface'] {
   background: color-mix(in srgb, var(--surface) 88%, transparent) !important;
