@@ -35,11 +35,13 @@ export default async function ComponentDoc({
   props,
   notes,
 }: ComponentDocProps) {
+  const { highlightCode } = await import("@/lib/markdown");
+
   const highlightedUsage = await Promise.all(
-    usage.map(async (u) => ({ ...u, html: await highlight(u.code) }))
+    usage.map(async (u) => ({ ...u, html: await highlightCode(u.code, "tsx") }))
   );
   const highlightedManual = await Promise.all(
-    manualSteps.map(async (s) => ({ ...s, html: await highlight(s.code) }))
+    manualSteps.map(async (s) => ({ ...s, html: await highlightCode(s.code, "tsx") }))
   );
 
   return (
@@ -143,43 +145,6 @@ export default async function ComponentDoc({
           </p>
         </section>
       )}
-
-      {/* Contact */}
-      <section className="mt-12">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--muted)]">
-          Contact
-        </p>
-        <p className="mt-2 text-[15px] leading-7 text-[var(--foreground)]">
-          Found a bug or issue? Feel free to drop a DM.
-        </p>
-        <div className="mt-3 flex items-center gap-3">
-          <a
-            href="mailto:sahil207003@gmail.com"
-            aria-label="Email"
-            className="text-[var(--muted)] transition hover:text-[var(--foreground)]"
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M1.5 5.25A2.25 2.25 0 0 1 3.75 3h16.5a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 20.25 21H3.75a2.25 2.25 0 0 1-2.25-2.25V5.25Zm2.16-.25 7.36 6.04a1.6 1.6 0 0 0 1.96 0L20.34 5H3.66ZM20.5 7.1l-6.28 5.15a4.1 4.1 0 0 1-4.44 0L3.5 7.1v11.4h17V7.1Z" />
-            </svg>
-          </a>
-          <a
-            href="https://x.com/sahilcodex"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="X (Twitter)"
-            className="text-[var(--muted)] transition hover:text-[var(--foreground)]"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.41l-5.8-7.58-6.64 7.58H.47l8.6-9.83L0 1.15h7.59l5.24 6.93 6.07-6.93Zm-1.29 19.5h2.04L6.49 3.24H4.3l13.31 17.41Z" />
-            </svg>
-          </a>
-        </div>
-      </section>
     </div>
   );
-}
-
-import { highlightCode } from "@/lib/markdown";
-function highlight(code: string) {
-  return highlightCode(code, "tsx");
 }
