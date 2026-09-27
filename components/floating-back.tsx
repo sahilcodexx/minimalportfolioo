@@ -15,7 +15,6 @@ export default function FloatingBack({
   const router = useRouter();
 
   function goBack() {
-    // If there's in-app history, go back natively; otherwise go to fallback
     if (window.history.length > 1 && document.referrer !== "") {
       router.back();
     } else {

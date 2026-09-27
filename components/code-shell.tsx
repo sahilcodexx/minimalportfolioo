@@ -18,7 +18,6 @@ export default function CodeShell({
 
   async function copy() {
     try {
-      // Strip tags to copy raw code text
       const tmp = document.createElement("div");
       tmp.innerHTML = shownHtml;
       await navigator.clipboard.writeText(tmp.textContent ?? "");
