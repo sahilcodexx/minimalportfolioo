@@ -1,19 +1,35 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
+
+/* The theme class lives on <html>, so the toggle reads it from the DOM. The
+   server snapshot is false so the button renders the sun icon before mount. */
+function subscribe(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["class"],
+  });
+  return () => observer.disconnect();
+}
+
+function getSnapshot() {
+  return document.documentElement.classList.contains("light");
+}
+
+function getServerSnapshot() {
+  return false;
+}
 
 export default function ThemeToggle() {
-  const [isLight, setIsLight] = useState(false);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    setIsLight(document.documentElement.classList.contains("light"));
-  }, []);
+  const isLight = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot
+  );
 
   function toggle() {
     const next = !isLight;
-    setIsLight(next);
     document.documentElement.classList.toggle("light", next);
     try {
       localStorage.setItem("theme", next ? "light" : "dark");
@@ -27,7 +43,7 @@ export default function ThemeToggle() {
       title={isLight ? "Switch to dark" : "Switch to light"}
       className="flex h-8 w-8 items-center justify-center rounded-full text-[var(--muted)] transition hover:text-[var(--foreground)]"
     >
-      {mounted && isLight ? <MoonIcon /> : <SunIcon />}
+      {isLight ? <MoonIcon /> : <SunIcon />}
     </button>
   );
 }

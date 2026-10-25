@@ -21,6 +21,37 @@ const addCmd: Record<PM, string> = {
 
 type ManualStep = { label: string; file: string; html: string };
 
+function CopyBtn({
+  text,
+  k,
+  copied,
+  onCopy,
+}: {
+  text: string;
+  k: string;
+  copied: string | null;
+  onCopy: (text: string, key: string) => void;
+}) {
+  return (
+    <button
+      onClick={() => onCopy(text, k)}
+      aria-label="Copy"
+      className="shrink-0 text-[var(--muted)] transition hover:text-[var(--foreground)]"
+    >
+      {copied === k ? (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+      ) : (
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          <rect x="9" y="9" width="13" height="13" rx="2" />
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
 export default function InstallTabs({
   cli,
   deps,
@@ -40,27 +71,6 @@ export default function InstallTabs({
       setCopied(key);
       setTimeout(() => setCopied(null), 1600);
     } catch {}
-  }
-
-  function CopyBtn({ text, k }: { text: string; k: string }) {
-    return (
-      <button
-        onClick={() => copy(text, k)}
-        aria-label="Copy"
-        className="shrink-0 text-[var(--muted)] transition hover:text-[var(--foreground)]"
-      >
-        {copied === k ? (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M20 6 9 17l-5-5" />
-          </svg>
-        ) : (
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" />
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
-          </svg>
-        )}
-      </button>
-    );
   }
 
   return (
@@ -105,7 +115,12 @@ export default function InstallTabs({
               <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-[var(--foreground)]">
                 {cliCmd[pm]} &quot;{cli}&quot;
               </code>
-              <CopyBtn text={`${cliCmd[pm]} "${cli}"`} k="cli" />
+              <CopyBtn
+                text={`${cliCmd[pm]} "${cli}"`}
+                k="cli"
+                copied={copied}
+                onCopy={copy}
+              />
             </div>
           </div>
 
@@ -116,7 +131,12 @@ export default function InstallTabs({
                 <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-[var(--foreground)]">
                   {addCmd[pm]} {deps.join(" ")}
                 </code>
-                <CopyBtn text={`${addCmd[pm]} ${deps.join(" ")}`} k="deps" />
+                <CopyBtn
+                text={`${addCmd[pm]} ${deps.join(" ")}`}
+                k="deps"
+                copied={copied}
+                onCopy={copy}
+              />
               </div>
             </div>
           )}
@@ -131,7 +151,12 @@ export default function InstallTabs({
               <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-[var(--foreground)]">
                 {addCmd[pm]} {deps.join(" ")}
               </code>
-              <CopyBtn text={`${addCmd[pm]} ${deps.join(" ")}`} k="m-deps" />
+              <CopyBtn
+                text={`${addCmd[pm]} ${deps.join(" ")}`}
+                k="m-deps"
+                copied={copied}
+                onCopy={copy}
+              />
             </div>
           </div>
           {manualSteps.map((s, i) => (
@@ -142,7 +167,12 @@ export default function InstallTabs({
               </p>
               <div className="code-shell relative max-h-96 overflow-auto">
                 <div className="absolute right-3 top-3 z-10">
-                  <CopyBtn text={s.html.replace(/<[^>]*>/g, "")} k={`m-${i}`} />
+                  <CopyBtn
+                    text={s.html.replace(/<[^>]*>/g, "")}
+                    k={`m-${i}`}
+                    copied={copied}
+                    onCopy={copy}
+                  />
                 </div>
                 <div
                   className="typeset typeset-docs max-w-none [&_pre]:!bg-transparent"

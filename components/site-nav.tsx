@@ -11,7 +11,6 @@ import {
 
 import { cn } from "@/lib/utils";
 
-const EASE_IN_OUT = [0.65, 0, 0.35, 1] as const;
 const EASE_OUT = [0.22, 1, 0.36, 1] as const;
 const SIZE_SPRING = { type: "spring", bounce: 0.16, duration: 0.5 } as const;
 
@@ -95,7 +94,11 @@ export default function SiteNav() {
   }, [open]);
 
   // Close the menu on navigation
-  React.useEffect(() => setOpen(false), [pathname]);
+  const [prevPathname, setPrevPathname] = React.useState(pathname);
+  if (pathname !== prevPathname) {
+    setPrevPathname(pathname);
+    setOpen(false);
+  }
 
   const goBack = () => {
     if (window.history.length > 1 && document.referrer !== "") router.back();

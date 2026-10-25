@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 
 function getGreeting(): string {
   const hour = new Date().getHours();
@@ -10,12 +10,20 @@ function getGreeting(): string {
   return "good night";
 }
 
-export default function Greeting() {
-  const [greeting, setGreeting] = useState("hello");
+/* The greeting depends on the clock, so it can change while the page is open.
+   Subscribe to a minute tick to refresh it, and use the same snapshot on the
+   server so the two agree at render time. */
+function subscribe(onChange: () => void) {
+  const id = setInterval(onChange, 60_000);
+  return () => clearInterval(id);
+}
 
-  useEffect(() => {
-    setGreeting(getGreeting());
-  }, []);
+export default function Greeting() {
+  const greeting = useSyncExternalStore(
+    subscribe,
+    getGreeting,
+    getGreeting
+  );
 
   return (
     <p className="text-[15px] leading-7 text-[var(--muted)]">

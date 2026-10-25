@@ -62,9 +62,11 @@ export function SearchBar({ className }: SearchBarProps = {}) {
   }, [deferredQuery]);
 
   // Reset active index when query changes
-  useEffect(() => {
+  const [prevQuery, setPrevQuery] = useState(deferredQuery);
+  if (deferredQuery !== prevQuery) {
+    setPrevQuery(deferredQuery);
     setActiveIndex(0);
-  }, [deferredQuery]);
+  }
 
   const isSearching = query.trim().length > 0;
 
@@ -237,7 +239,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                     transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.15 }}
                     className="px-3 py-3 text-xs text-neutral-400 dark:text-neutral-500"
                   >
-                    No matches for "{deferredQuery}"
+                    No matches for &quot;{deferredQuery}&quot;
                   </motion.div>
                 ) : (
                   <AnimatePresence mode="popLayout" initial={false}>
