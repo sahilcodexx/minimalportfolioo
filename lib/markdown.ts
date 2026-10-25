@@ -6,6 +6,7 @@ import rehypeSlug from "rehype-slug";
 import rehypePrettyCode, { type Options as PrettyCodeOptions } from "rehype-pretty-code";
 import rehypeStringify from "rehype-stringify";
 import GithubSlugger from "github-slugger";
+import { getHighlighter } from "@/lib/highlighter";
 
 const prettyCodeOptions: PrettyCodeOptions = {
   theme: {
@@ -13,6 +14,10 @@ const prettyCodeOptions: PrettyCodeOptions = {
     dark: "github-dark-default",
   },
   keepBackground: false,
+  // Uses the WASM-free shiki engine so highlighting works on Cloudflare Workers.
+  // The cast is safe: rehype-pretty-code only calls codeToHtml, getTheme and
+  // loadLanguage, all of which HighlighterCore provides.
+  getHighlighter: () => getHighlighter() as Promise<never>,
 };
 
 /** Strip fenced code blocks so `##` inside code is not treated as a heading. */
