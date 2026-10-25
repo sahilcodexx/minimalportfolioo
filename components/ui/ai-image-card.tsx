@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { cn } from "@/lib/utils";
@@ -18,7 +19,7 @@ export interface AiImageCardProps {
 
 export function AiImageCard({
   generateDuration = 3,
-  imageSrc = "/fightclub1.jpeg",
+  imageSrc = "/projects/nova.webp",
   imageAlt = "AI generated image",
   label = "Generating image",
   className,
@@ -162,10 +163,12 @@ export function AiImageCard({
               ease: [0.22, 1, 0.36, 1], // easeOutQuint
             }}
           >
-            <img
+            <Image
               src={imageSrc}
               alt={imageAlt}
-              className="w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 576px"
+              className="object-cover"
             />
 
             {/* Shine sweep across the image as it focuses in */}
