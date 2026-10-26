@@ -41,11 +41,11 @@ export default async function ProjectPage({
         <h1 className="mt-4 text-2xl font-medium tracking-tight text-[var(--foreground)]">
           {meta.title}
         </h1>
-        <p className="mt-2 text-[15px] leading-7 text-[var(--muted)]">
+        <p className="mt-2 text-[16px] leading-7 text-[var(--muted)]">
           {meta.description}
         </p>
 
-        <div className="mt-4 flex flex-wrap items-center gap-2 text-[13px]">
+        <div className="mt-4 flex flex-wrap items-center gap-2 text-[14px]">
           {meta.github && (
             <a className="link" href={meta.github} target="_blank" rel="noopener noreferrer">
               GitHub

@@ -80,7 +80,7 @@ export default function InstallTabs({
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`rounded-full px-4 py-1.5 text-[13px] font-medium capitalize transition-colors ${
+            className={`rounded-full px-4 py-1.5 text-[15px] font-medium capitalize transition-colors ${
               tab === t
                 ? "bg-[color-mix(in_srgb,var(--foreground)_10%,transparent)] text-[var(--foreground)]"
                 : "text-[var(--muted)] hover:text-[var(--foreground)]"
@@ -98,7 +98,7 @@ export default function InstallTabs({
               <button
                 key={p}
                 onClick={() => setPm(p)}
-                className={`rounded-full px-3 py-1 text-[13px] transition-colors ${
+                className={`rounded-full px-3 py-1 text-[15px] transition-colors ${
                   pm === p
                     ? "bg-[color-mix(in_srgb,var(--foreground)_10%,transparent)] text-[var(--foreground)]"
                     : "text-[var(--muted)] hover:text-[var(--foreground)]"
@@ -110,9 +110,9 @@ export default function InstallTabs({
           </div>
 
           <div>
-            <p className="mb-1.5 text-[13px] text-[var(--muted)]">CLI</p>
+            <p className="mb-1.5 text-[15px] text-[var(--muted)]">CLI</p>
             <div className="code-shell flex items-center justify-between gap-3">
-              <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-[var(--foreground)]">
+              <code className="overflow-x-auto whitespace-nowrap font-mono text-[15px] text-[var(--foreground)]">
                 {cliCmd[pm]} &quot;{cli}&quot;
               </code>
               <CopyBtn
@@ -126,9 +126,9 @@ export default function InstallTabs({
 
           {deps.length > 0 && (
             <div>
-              <p className="mb-1.5 text-[13px] text-[var(--muted)]">Dependencies</p>
+              <p className="mb-1.5 text-[15px] text-[var(--muted)]">Dependencies</p>
               <div className="code-shell flex items-center justify-between gap-3">
-                <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-[var(--foreground)]">
+                <code className="overflow-x-auto whitespace-nowrap font-mono text-[15px] text-[var(--foreground)]">
                   {addCmd[pm]} {deps.join(" ")}
                 </code>
                 <CopyBtn
@@ -144,11 +144,11 @@ export default function InstallTabs({
       ) : (
         <div className="mt-4 flex flex-col gap-5">
           <div>
-            <p className="mb-1.5 text-[13px] text-[var(--muted)]">
+            <p className="mb-1.5 text-[15px] text-[var(--muted)]">
               1. Install dependencies
             </p>
             <div className="code-shell flex items-center justify-between gap-3">
-              <code className="overflow-x-auto whitespace-nowrap font-mono text-[13px] text-[var(--foreground)]">
+              <code className="overflow-x-auto whitespace-nowrap font-mono text-[15px] text-[var(--foreground)]">
                 {addCmd[pm]} {deps.join(" ")}
               </code>
               <CopyBtn
@@ -161,7 +161,7 @@ export default function InstallTabs({
           </div>
           {manualSteps.map((s, i) => (
             <div key={s.file}>
-              <p className="mb-1.5 text-[13px] text-[var(--muted)]">
+              <p className="mb-1.5 text-[15px] text-[var(--muted)]">
                 {i + 2}. Copy the source into{" "}
                 <span className="font-mono text-[var(--foreground)]">{s.file}</span>
               </p>

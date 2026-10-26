@@ -61,10 +61,10 @@ function ListView({ projects }: { projects: ProjectCard[] }) {
         <Link
           key={p.slug}
           href={`/projects/${p.slug}`}
-          className="row flex items-baseline justify-between py-1.5 text-[15px]"
+          className="row flex items-baseline justify-between py-1.5 text-[17px]"
         >
           <span className="link">{p.title}</span>
-          <span className="text-[13px] text-[var(--muted)]">{p.status}</span>
+          <span className="text-[15px] text-[var(--muted)]">{p.status}</span>
         </Link>
       ))}
     </div>
@@ -103,7 +103,7 @@ function GridView({ projects }: { projects: ProjectCard[] }) {
             <div className="mt-3 flex items-center gap-3">
               <Link
                 href={`/projects/${p.slug}`}
-                className="rounded-full border border-[var(--hairline)] px-3.5 py-1 text-[13px] text-[var(--foreground)] transition-colors duration-300 hover:border-[color-mix(in_srgb,var(--foreground)_25%,transparent)]"
+                className="rounded-full border border-[var(--hairline)] px-3.5 py-1 text-[15px] text-[var(--foreground)] transition-colors duration-300 hover:border-[color-mix(in_srgb,var(--foreground)_25%,transparent)]"
               >
                 View
               </Link>
@@ -135,7 +135,7 @@ export default function ProjectsView({ projects }: { projects: ProjectCard[] }) 
           <h1 className="text-2xl font-medium tracking-tight text-[var(--foreground)]">
             Projects
           </h1>
-          <p className="mt-2 text-[15px] leading-7 text-[var(--muted)]">
+          <p className="mt-2 text-[17px] leading-7 text-[var(--muted)]">
             Things I have designed and built.
           </p>
         </div>

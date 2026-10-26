@@ -39,7 +39,7 @@ export default function PlaygroundPage() {
         <h1 className="text-2xl font-medium tracking-tight text-[var(--foreground)]">
           Playground
         </h1>
-        <p className="mt-2 text-[15px] leading-7 text-[var(--muted)]">
+        <p className="mt-2 text-[16px] leading-7 text-[var(--muted)]">
           Interactive components built with React, Motion and TypeScript.
         </p>
 
@@ -48,10 +48,10 @@ export default function PlaygroundPage() {
             <Link
               key={c.name}
               href={c.href}
-              className="row flex items-baseline justify-between py-1.5 text-[15px]"
+              className="row flex items-baseline justify-between py-1.5 text-[16px]"
             >
               <span className="link">{c.name}</span>
-              <span className="text-[13px] text-[var(--muted)]">{c.tags}</span>
+              <span className="text-[14px] text-[var(--muted)]">{c.tags}</span>
             </Link>
           ))}
         </div>

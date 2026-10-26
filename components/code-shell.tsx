@@ -34,7 +34,7 @@ export default function CodeShell({
             <button
               key={t.label}
               onClick={() => setIdx(i)}
-              className={`rounded-full px-3 py-1 text-[13px] transition-colors ${
+              className={`rounded-full px-3 py-1 text-[15px] transition-colors ${
                 idx === i
                   ? "bg-[color-mix(in_srgb,var(--foreground)_10%,transparent)] text-[var(--foreground)]"
                   : "text-[var(--muted)] hover:text-[var(--foreground)]"

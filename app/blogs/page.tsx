@@ -25,7 +25,7 @@ export default async function BlogsPage() {
         <h1 className="mt-4 text-2xl font-medium tracking-tight text-[var(--foreground)]">
           Notes
         </h1>
-        <p className="mt-2 text-[15px] leading-7 text-[var(--muted)]">
+        <p className="mt-2 text-[16px] leading-7 text-[var(--muted)]">
           Writing on React, Next.js, Neovim and frontend engineering.
         </p>
 
@@ -34,10 +34,10 @@ export default async function BlogsPage() {
             <Link
               key={post.slug}
               href={`/blogs/${post.slug}`}
-              className="row flex items-baseline justify-between py-1.5 text-[15px]"
+              className="row flex items-baseline justify-between py-1.5 text-[16px]"
             >
               <span className="link">{post.title}</span>
-              <span className="text-[13px] text-[var(--muted)]">
+              <span className="text-[14px] text-[var(--muted)]">
                 {formatDate(post.date)}
               </span>
             </Link>

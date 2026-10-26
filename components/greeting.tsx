@@ -26,7 +26,7 @@ export default function Greeting() {
   );
 
   return (
-    <p className="text-[15px] leading-7 text-[var(--muted)]">
+    <p className="text-[17px] leading-7 text-[var(--muted)]">
       {greeting}, <span>こんにちは</span>, <span>નમસ્તે</span>
     </p>
   );

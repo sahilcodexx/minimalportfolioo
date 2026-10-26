@@ -29,7 +29,7 @@ export default function Four0FourEnhanced() {
           className="rise mt-6 flex flex-col items-center gap-2 text-center sm:mt-8"
           style={{ animationDelay: "80ms" }}
         >
-          <h1 className="text-[15px] font-medium tracking-[-0.01em] text-zinc-200">
+          <h1 className="text-[17px] font-medium tracking-[-0.01em] text-zinc-200">
             Page not found
           </h1>
           <p className="max-w-[31ch] text-balance text-[13.5px] leading-6 text-zinc-500">
@@ -43,13 +43,13 @@ export default function Four0FourEnhanced() {
         >
           <Link
             href="/"
-            className="inline-flex h-9 items-center justify-center rounded-full bg-white px-5 text-[13px] font-medium tracking-[-0.01em] text-black transition hover:bg-zinc-200 active:bg-zinc-300"
+            className="inline-flex h-9 items-center justify-center rounded-full bg-white px-5 text-[15px] font-medium tracking-[-0.01em] text-black transition hover:bg-zinc-200 active:bg-zinc-300"
           >
             Go home
           </Link>
           <button
             onClick={() => window.history.back()}
-            className="inline-flex h-9 cursor-pointer items-center justify-center rounded-full bg-zinc-900 px-5 text-[13px] font-medium tracking-[-0.01em] text-zinc-300 ring-1 ring-white/10 transition hover:bg-zinc-800 hover:text-white active:bg-zinc-900"
+            className="inline-flex h-9 cursor-pointer items-center justify-center rounded-full bg-zinc-900 px-5 text-[15px] font-medium tracking-[-0.01em] text-zinc-300 ring-1 ring-white/10 transition hover:bg-zinc-800 hover:text-white active:bg-zinc-900"
           >
             Go back
           </button>

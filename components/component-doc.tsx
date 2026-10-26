@@ -50,7 +50,7 @@ export default async function ComponentDoc({
       <h1 className="text-2xl font-medium tracking-tight text-[var(--foreground)]">
         {title}
       </h1>
-      <p className="mt-3 max-w-[60ch] text-[15px] leading-7 text-[var(--muted)]">
+      <p className="mt-3 max-w-[60ch] text-[17px] leading-7 text-[var(--muted)]">
         {description}
       </p>
 
@@ -67,7 +67,7 @@ export default async function ComponentDoc({
         <h2 className="text-lg font-medium tracking-tight text-[var(--foreground)]">
           Installation
         </h2>
-        <p className="mt-1.5 text-[14px] leading-6 text-[var(--muted)]">
+        <p className="mt-1.5 text-[15px] leading-6 text-[var(--muted)]">
           Install component dependencies or run the automated CLI command.
         </p>
 
@@ -95,7 +95,7 @@ export default async function ComponentDoc({
           <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--muted)]">
             Props
           </p>
-          <p className="mt-2 text-[15px] leading-7 text-[var(--foreground)]">
+          <p className="mt-2 text-[17px] leading-7 text-[var(--foreground)]">
             Options you can pass to customize this component.
           </p>
           <div className="mt-4 overflow-x-auto">
@@ -120,10 +120,10 @@ export default async function ComponentDoc({
                         {p.name}
                       </code>
                     </td>
-                    <td className="py-4 pr-6 align-top font-mono text-[13px] text-[var(--muted)]">
+                    <td className="py-4 pr-6 align-top font-mono text-[15px] text-[var(--muted)]">
                       {p.type}
                     </td>
-                    <td className="py-4 align-top text-[14px] leading-6 text-[var(--foreground)]">
+                    <td className="py-4 align-top text-[15px] leading-6 text-[var(--foreground)]">
                       {p.description}
                     </td>
                   </tr>
@@ -140,7 +140,7 @@ export default async function ComponentDoc({
           <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--muted)]">
             Keep in mind
           </p>
-          <p className="mt-2 max-w-[60ch] text-[15px] leading-7 text-[var(--foreground)]">
+          <p className="mt-2 max-w-[60ch] text-[17px] leading-7 text-[var(--foreground)]">
             {notes}
           </p>
         </section>
