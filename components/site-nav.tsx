@@ -110,6 +110,7 @@ export default function SiteNav() {
 
   const socials = [
     {
+      key: "github",
       label: "GitHub",
       href: "https://github.com/sahilcodexx",
       icon: (
@@ -119,6 +120,7 @@ export default function SiteNav() {
       ),
     },
     {
+      key: "linkedin",
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/sahil-singh-tech/",
       icon: (
@@ -128,6 +130,7 @@ export default function SiteNav() {
       ),
     },
     {
+      key: "x",
       label: "X",
       href: "https://x.com/sahilcodex",
       icon: (
@@ -137,6 +140,7 @@ export default function SiteNav() {
       ),
     },
     {
+      key: "email",
       label: "Email",
       href: "mailto:sahil207003@gmail.com",
       icon: (
