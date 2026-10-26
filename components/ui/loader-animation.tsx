@@ -38,11 +38,11 @@ export function LoaderAnimation({
   }, [intervalMs]);
 
   return (
-    <div className={`flex items-center justify-center p-4 ${className}`}>
+    <div className={`flex items-center justify-center py-4 ${className}`}>
       <div className="h-12 flex items-center justify-center">
         <motion.h2
           key={index}
-          className="text-3xl font-medium tracking-tight text-foreground"
+          className="text-5xl font-medium tracking-tight text-foreground"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.1 }}

@@ -49,7 +49,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
   const deferredQuery = useDeferredValue(query);
   const [selected, setSelected] = useState<string>("US");
   const [activeIndex, setActiveIndex] = useState<number>(0);
-  const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -130,13 +130,13 @@ export function SearchBar({ className }: SearchBarProps = {}) {
         onKeyDown={handleKeyDown}
       >
       <div
-        className={`flex items-center gap-2 rounded-2xl border bg-white px-4 py-2.5 transition-[border-color,box-shadow] duration-200 dark:bg-neutral-900 ${
+        className={`flex items-center gap-2 rounded-2xl border bg-[var(--surface)] px-4 py-2.5 transition-[border-color,box-shadow] duration-200  ${
           isOpen
-            ? "border-neutral-300 shadow-[0_0_0_4px_rgba(0,0,0,0.04),0_1px_2px_0_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,1)] dark:border-neutral-700 dark:shadow-[0_0_0_4px_rgba(255,255,255,0.04),0_1px_2px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.04)]"
-            : "border-neutral-200 shadow-[0_1px_2px_0_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,1)] dark:border-neutral-800 dark:shadow-[0_1px_2px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+            ? "border-[var(--foreground)]/20 shadow-[0_0_0_4px_rgba(0,0,0,0.04),0_1px_2px_0_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,1)]  dark:shadow-[0_0_0_4px_rgba(255,255,255,0.04),0_1px_2px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.04)]"
+            : "border-[var(--hairline)] shadow-[0_1px_2px_0_rgba(0,0,0,0.04),inset_0_1px_0_0_rgba(255,255,255,1)]  dark:shadow-[0_1px_2px_0_rgba(0,0,0,0.2),inset_0_1px_0_0_rgba(255,255,255,0.04)]"
         }`}
       >
-        <Search className="h-4 w-4 shrink-0 text-neutral-400 dark:text-neutral-500" />
+        <Search className="h-4 w-4 shrink-0 text-[var(--muted)] " />
         <input
           ref={inputRef}
           type="text"
@@ -147,7 +147,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
             if (!isOpen) setIsOpen(true);
           }}
           placeholder={`Search ${COUNTRIES.length} countries`}
-          className="flex-1 min-w-0 bg-transparent text-sm text-neutral-900 placeholder:text-neutral-400 outline-none dark:text-neutral-100 dark:placeholder:text-neutral-500"
+          className="flex-1 min-w-0 bg-transparent text-sm text-[var(--foreground)] placeholder:text-[var(--muted)] outline-none  dark:placeholder:text-[var(--muted)]"
         />
 
         <AnimatePresence mode="popLayout" initial={false}>
@@ -165,7 +165,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 5 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.14, ease: [0.16, 1, 0.3, 1] }}
-                className="shrink-0 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[10px] font-medium tabular-nums text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400"
+                className="shrink-0 rounded-md border border-[var(--hairline)] bg-[var(--background)] px-2 py-0.5 text-[10px] font-medium tabular-nums text-[var(--muted)]   "
               >
                 {filtered.length}
               </motion.span>
@@ -176,7 +176,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                   setQuery("");
                   inputRef.current?.focus();
                 }}
-                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-400 hover:text-neutral-600 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+                className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-[var(--hairline)] bg-[var(--background)] text-[var(--muted)] hover:text-[var(--foreground)]    "
               >
                 <X className="h-3 w-3" />
               </motion.button>
@@ -188,7 +188,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
               animate={{ opacity: 1, scale: 1 }}
               exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.85 }}
               transition={shouldReduceMotion ? { duration: 0 } : springMicro}
-              className="shrink-0 rounded-md border border-neutral-200 bg-neutral-50 px-2 py-0.5 text-[10px] font-medium text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400"
+              className="shrink-0 rounded-md border border-[var(--hairline)] bg-[var(--background)] px-2 py-0.5 text-[10px] font-medium text-[var(--muted)]   "
             >
               esc
             </motion.div>
@@ -225,7 +225,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                   }
             }
             style={{ originX: 0.5, originY: 0 }}
-            className="absolute left-0 right-0 top-full mt-2 z-50 overflow-hidden rounded-2xl border border-neutral-200 bg-white/95 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_12px_32px_-4px_rgba(0,0,0,0.12)] dark:border-neutral-800 dark:bg-neutral-900/95 dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.4),0_12px_32px_-4px_rgba(0,0,0,0.6)]"
+            className="absolute left-0 right-0 top-full mt-2 z-50 overflow-hidden rounded-2xl border border-[var(--hairline)] bg-[var(--surface)]/95 backdrop-blur-md shadow-[0_4px_20px_-2px_rgba(0,0,0,0.06),0_12px_32px_-4px_rgba(0,0,0,0.12)]   dark:shadow-[0_4px_20px_-2px_rgba(0,0,0,0.4),0_12px_32px_-4px_rgba(0,0,0,0.6)]"
           >
             <div
               style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
@@ -237,7 +237,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                     initial={shouldReduceMotion ? false : { opacity: 0 }}
                     animate={{ opacity: 1 }}
                     transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.15 }}
-                    className="px-3 py-3 text-xs text-neutral-400 dark:text-neutral-500"
+                    className="px-3 py-3 text-xs text-[var(--muted)] "
                   >
                     No matches for &quot;{deferredQuery}&quot;
                   </motion.div>
@@ -290,7 +290,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                             transition={
                               shouldReduceMotion ? { duration: 0 } : springPill
                             }
-                            className="absolute inset-0 rounded-xl bg-neutral-100 dark:bg-neutral-800"
+                            className="absolute inset-0 rounded-xl bg-[var(--background)] "
                           />
                         )}
 
@@ -301,8 +301,8 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                         <span
                           className={`relative z-10 flex-1 text-sm ${
                             isSelected
-                              ? "font-semibold text-neutral-900 dark:text-neutral-100"
-                              : "text-neutral-700 dark:text-neutral-300"
+                              ? "font-semibold text-[var(--foreground)] "
+                              : "text-[var(--muted)]"
                           }`}
                         >
                           {highlightMatch(country.name, deferredQuery)}
@@ -326,7 +326,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                               transition={
                                 shouldReduceMotion ? { duration: 0 } : springMicro
                               }
-                              className="relative z-10 text-neutral-800 dark:text-neutral-200"
+                              className="relative z-10 text-[var(--foreground)]"
                             >
                               <Check className="h-3.5 w-3.5" strokeWidth={2.5} />
                             </motion.span>
@@ -336,8 +336,8 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                         <span
                           className={`relative z-10 shrink-0 rounded-md border px-2 py-0.5 text-[10px] font-medium tracking-wide ${
                             isSelected
-                              ? "border-neutral-300 bg-white text-neutral-800 dark:border-neutral-600 dark:bg-neutral-900 dark:text-neutral-300"
-                              : "border-neutral-200 bg-neutral-50 text-neutral-500 dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400"
+                              ? "border-[var(--foreground)]/20 bg-[var(--surface)] text-[var(--foreground)]"
+                              : "border-[var(--hairline)] bg-[var(--background)] text-[var(--muted)]   "
                           }`}
                         >
                           {country.code}
@@ -358,9 +358,9 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                   ? { duration: 0 }
                   : { delay: 0.08, duration: 0.2 }
               }
-              className="flex items-center justify-between border-t border-neutral-100 bg-neutral-50/80 px-4 py-2.5 dark:border-neutral-800 dark:bg-neutral-800/40"
+              className="flex items-center justify-between border-t border-[var(--hairline)] bg-[var(--background)]/80 px-4 py-2.5"
             >
-              <div className="flex items-center gap-2 text-[11px] text-neutral-500 dark:text-neutral-400">
+              <div className="flex items-center gap-2 text-[11px] text-[var(--muted)] ">
                 <div className="flex items-center gap-1 self-center">
                   <KeyIcon>
                     <ArrowUp className="h-2.5 w-2.5" />
@@ -387,7 +387,7 @@ export function SearchBar({ className }: SearchBarProps = {}) {
                     ? { duration: 0 }
                     : { duration: 0.16, ease: [0.16, 1, 0.3, 1] }
                 }
-                className="text-[11px] tabular-nums text-neutral-400 dark:text-neutral-500 font-medium"
+                className="text-[11px] tabular-nums text-[var(--muted)]  font-medium"
               >
                 {filtered.length} {filtered.length === 1 ? "country" : "countries"}
               </motion.span>
@@ -404,7 +404,7 @@ export default SearchBar;
 
 function KeyIcon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-white text-neutral-500 shadow-[0_1px_0_0_rgba(0,0,0,0.04)] dark:border-neutral-700 dark:bg-neutral-800 dark:text-neutral-400">
+    <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-[var(--hairline)] bg-[var(--surface)] text-[var(--muted)] shadow-[0_1px_0_0_rgba(0,0,0,0.04)]   ">
       {children}
     </div>
   );
@@ -418,7 +418,7 @@ function highlightMatch(text: string, query: string) {
   return (
     <>
       {text.slice(0, idx)}
-      <mark className="rounded-[3px] bg-yellow-200/80 px-0.5 font-semibold text-neutral-900 dark:bg-yellow-500/30 dark:text-neutral-100">
+      <mark className="rounded-[3px] bg-yellow-200/80 px-0.5 font-semibold text-[var(--foreground)] dark:bg-yellow-500/30 ">
         {text.slice(idx, idx + q.length)}
       </mark>
       {text.slice(idx + q.length)}

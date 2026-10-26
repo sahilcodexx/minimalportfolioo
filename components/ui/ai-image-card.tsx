@@ -19,8 +19,8 @@ export interface AiImageCardProps {
 
 export function AiImageCard({
   generateDuration = 3,
-  imageSrc = "/projects/nova.webp",
-  imageAlt = "AI generated image",
+  imageSrc = "/blogimage/motion.jpg",
+  imageAlt = "Glowing Motion mark",
   label = "Generating image",
   className,
 }: AiImageCardProps) {
@@ -88,7 +88,7 @@ export function AiImageCard({
       ctx.clearRect(0, 0, width, height);
       const time = Date.now() * 0.001;
 
-      const isDark = document.documentElement.classList.contains("dark");
+  const isDark = !document.documentElement.classList.contains("light");
       // #818189 in dark mode, soft neutral gray in light mode (so dots don't read as harsh black on white)
       const r = isDark ? 129 : 110;
       const g = isDark ? 129 : 110;
@@ -126,7 +126,7 @@ export function AiImageCard({
   return (
     <div
       className={cn(
-        "relative w-full aspect-square rounded-2xl overflow-hidden bg-white dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-800",
+        "relative w-full aspect-square rounded-2xl overflow-hidden bg-[var(--surface)] border border-[var(--hairline)]",
         className
       )}
     >
@@ -168,7 +168,7 @@ export function AiImageCard({
               alt={imageAlt}
               fill
               sizes="(max-width: 768px) 100vw, 576px"
-              className="object-cover"
+              className="object-cover object-[70%_center]"
             />
 
             {/* Shine sweep across the image as it focuses in */}
